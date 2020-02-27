@@ -13,6 +13,7 @@ import { Plugins, CameraResultType, Capacitor,
 
 
 export class PhotoService {
+  public photos: Photo[] = [];
 
   constructor() { }
 
@@ -23,5 +24,16 @@ export class PhotoService {
       source: CameraSource.Camera,
       quality: 100
     });
+
+    this.photos.unshift({
+      filepath: "soon...",
+      webviewPath: capturedPhoto.webPath
+    });
   }
+}
+
+interface Photo {
+  filepath: string;
+  webviewPath: string;
+  base64?: string;
 }

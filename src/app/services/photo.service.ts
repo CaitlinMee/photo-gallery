@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Plugins, CameraResultType, Capacitor,
   FilesystemDirectory, CameraPhoto, CameraSource } from '@capacitor/core';
+import { Platform } from '@ionic/angular';
 
   const { Camera, Filesystem, Storage} = Plugins;
 
@@ -13,8 +14,11 @@ import { Plugins, CameraResultType, Capacitor,
 export class PhotoService {
   public photos: Photo[] = [];
   private PHOTO_STORAGE: string = "photos";
+  private platform: Platform;
 
-  constructor() { }
+  constructor(platform: Platform) {
+    this.platform = platform;
+   }
 
   private async savePicture(cameraPhoto: CameraPhoto) {
     // Convert photo to base64 format, required by Filesystem API to save
